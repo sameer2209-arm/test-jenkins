@@ -1,24 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    label 'oulu-lab'
+  }
   stages {
-    stage('Environment setup') {
-      steps {
-        sh 'apt install build-essential'
-      }
-    }
-    stage('Build') {
-      steps {
-        sh 'g++ hello.cpp -o hello'
-      }
-    }
-    stage('Run') {
-      steps {
-        sh './hello'
-      }
-    }
-    stage('Deploy') {
-      steps {
-        sh 'echo Deploying....'
+    stage('Check branch'){
+      steps{
+        sh "echo ${BRANCH_NAME}"
       }
     }
   }
